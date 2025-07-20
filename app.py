@@ -25,7 +25,7 @@ genai.configure(api_key=os.getenv("GEMINI_KEY"))
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = json_key_path
 
 # Streamlit app config
-st.set_page_config(page_title="Perfect LLM Model Finder", page_icon="🔍🎯", layout="wide")
+st.set_page_config(page_title="LLMinder", page_icon="🔍🎯", layout="wide")
 
 # Session state init
 if 'feedback_key' not in st.session_state:
@@ -67,11 +67,11 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-@st.dialog("Welcome to Perfect LLM Model Finder 🔍")
+@st.dialog("Welcome to LLMinder")
 def welcome_message():
     st.balloons()
     st.write("""
-🔍 **Find Your Perfect Open Source LLM Match in 2 Simple Steps!**
+ **LLMinder!**
 
 ✨ **Features:**
 - Global Language Support
@@ -79,7 +79,7 @@ def welcome_message():
 - Real-time Updates
 - Quality Assured
 
-Just describe your task and set your size preference. We'll do the rest! 🚀
+Just describe your task and set your size preference.
     """)
 
 @st.cache_data
@@ -180,7 +180,7 @@ def _submit_feedback(response, emoji=None):
     st.success("Your feedback has been submitted!")
 
 # Main interface
-st.title("Perfect LLM Model Finder 🔍")
+st.title("LLminder")
 if not st.session_state.welcome_shown:
     welcome_message()
     st.session_state.welcome_shown = True
@@ -197,7 +197,7 @@ if st.button("Find My Perfect Match! 🎯"):
         if lang != 'en':
             st.info(f"Detected language: {lang}. Translated for processing.")
         best, best_size, selected = process_task(translated, size)
-        st.success("Match found! 🎉")
+        st.success(" Yayyy Match found!")
 
         with st.expander("Results"):
             st.markdown("### 🏆 Overall Best Model")
